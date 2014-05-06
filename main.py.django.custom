@@ -1,0 +1,26 @@
+import os, sys
+os.environ["DJANGO_SETTINGS_MODULE"] = "kura_web.settings" 
+#sys.path.append("/home/mugo/aptana-studio-workspace/kura_gae/src")
+
+from google.appengine.ext.webapp import util
+
+from django.conf import settings
+settings._target = None
+
+from django.core.handlers import wsgi
+from django.core import signals
+import django.db
+from django.dispatch import dispatcher
+
+#error logging here if it can be confirmed to work
+dispatcher.disconnect(django.db._rollback_on_exception, signals.got_request_exception)
+
+
+def main():
+    app = wsgi.WSGIHandler()
+    util.run_wsgi_app(app)
+
+if __name__ == "__main__":
+    main()
+
+    

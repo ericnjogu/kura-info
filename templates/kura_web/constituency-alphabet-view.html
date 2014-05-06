@@ -1,0 +1,35 @@
+{% extends 'kura_web/base.html' %}
+{% block keywords %}
+Constituency, polling station, general election,IIEC"
+{% endblock keywords %}
+{% block title %}
+Constituencies Starting With {{ letter }}
+{% endblock title %}
+{% block contents %}
+		<h1>Constituencies Starting With '{{ letter }}'</h1>
+		These are the constituencies for the 2007 general election. Please click on a constituency to see its IIEC polling stations.
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		<ol start="{{ page.start_index }}">
+			{% for cn in page.object_list %}
+			<li{% cycle ' class="odd"' '' %}>
+				<a href="/constituencies/{{ cn.name }}/page/1">
+				{{ cn.name }}
+				</a>
+			</li>
+			{% endfor %}
+		</ol>
+		<div>
+			{% if page.has_previous %}
+			<a href="/constituencies/alphabetical/{{ letter }}/page/{{ page.previous_page_number }}/">Previous</a>
+			{% endif %}
+			&nbsp;
+			Page {{ page.number }} of {{ page.paginator.num_pages }}
+			&nbsp;
+			{% if page.has_next %}
+			<a href="/constituencies/alphabetical/{{ letter }}/page/{{ page.next_page_number }}/">Next</a>
+			{% endif %} 
+		</div>
+			
+{% endblock contents %}

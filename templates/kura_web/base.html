@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="distribution" content="global"/>
+		<meta name="robots" content="follow, all"/>
+		<meta name="language" content="en"/>
+		
+		<meta name="keywords" content="{% block keywords %} {% endblock %}"/>
+		
+		<title>{% block title %} title {% endblock %}</title>
+		
+		<style>
+			body {font-family:verdana arial sans-serif;}
+			li.odd {background:#E0FFB8}
+		</style>
+	</head>
+	<body>
+		<!-- navigation will be placed at the bottom
+		<div class="navigation">
+			{% block navigation-top %}
+			Navigation: <a href="/">Home</a> &nbsp;&nbsp; <a href="/constituencies">A-Z Listing</a>
+			{% endblock %}
+		</div>
+		 -->
+		<div class="contents">
+			{% block contents %}
+			contents
+			{% endblock %}
+		</div>
+		
+		<div class="navigation">
+			{% block navigation %}
+			<p>
+			 <a href="/constituencies/page/1">Alphabetical Constituency Listing</a>
+			 </p>
+			 <p>
+			<a href="/">Home</a>
+			</p>
+			{% endblock %}
+		</div>
+	</body>
+</html>

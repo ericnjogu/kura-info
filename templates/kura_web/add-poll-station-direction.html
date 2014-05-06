@@ -1,0 +1,22 @@
+{% extends 'kura_web/base.html' %}
+{% block keywords %}
+polling station, directions
+{% endblock keywords %}
+{% block title %}
+	Adding Directions for  {{ stn_name }}
+{% endblock title %}
+{% block contents %}
+		<h1>Add Directions for {{ stn_name }} - {{ const_name }}</h1>
+		<form action="{% url kura_web.views.add_pollstation_direction const_name=const_name, stn_name=stn_name %}" method="post">
+			{{ form.as_p }}
+			<input type="submit" value="Add"/>
+		</form>
+		<a href="{% url kura_web.views.view_pollstation const_name=const_name, stn_name=stn_name %}">
+			{{ stn_name }}
+		</a>
+		&nbsp;
+		<a href="{% url kura_web.views.poll_stations_for const_name=const_name, page_num=1 %}">
+			{{ const_name }}
+		</a>
+	
+{% endblock contents %}

@@ -1,0 +1,21 @@
+application: kura-info
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+#testing
+- url: /test.*
+  script: gaeunit.py
+
+# works if the google's webapp is handling requests
+# TODO convert this to a django url config
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+#  login: admin
+
+- url: /*
+  script: main.py
+
+

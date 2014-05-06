@@ -1,0 +1,56 @@
+{% extends 'kura_web/base.html' %}
+{% block keywords %}
+Constituency, polling station, general election, Kenya, voting, IIEC
+{% endblock keywords %}
+{% block title %}
+{{ const_name }} - Polling Stations
+{% endblock title %}
+{% block contents %}
+		<h1>{{ const_name }} - Polling Stations</h1>
+		Below is the IIEC list of polling stations where voting took place in {{ const_name }} constituency at the 2007 general election in Kenya. 
+		{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		{% if page %}
+			<ol start="{{ page.start_index }}">
+				{% for stn in page.object_list %}
+				<li{% cycle ' class="odd"' '' %}>
+				<!--
+					<a href="/constituencies/{{ const_name }}/{{ stn.name }}/">
+					-->
+					{{ stn.name }}
+					<!--</a>-->
+					</li>
+				{% endfor %}
+			</ol>
+			<h2>Navigation</h2>
+			<p>
+				{% if page.has_previous %}
+				<a href="{% url kura_web.views.poll_stations_for const_name=const_name, page_num=page.previous_page_number %}">Previous</a>
+				{% endif %}
+				&nbsp;
+				Page {{ page.number }} of {{ page.paginator.num_pages }}
+				&nbsp;
+				{% if page.has_next %}
+				<a href="{% url kura_web.views.poll_stations_for const_name=const_name, page_num=page.next_page_number %}">Next</a>
+				{% endif %} 
+			</p>
+			<h3>Jump to</h3>
+			<p>
+				{% for page_num, letter_list in jump_to.items %}
+					{% ifnotequal page_num page.number %}
+						<span style="margin-right:10px">
+						<a href="{% url kura_web.views.poll_stations_for const_name=const_name, page_num=page_num  %}">
+						{% for letter in letter_list %}
+								<span style="margin-left:2px">{{ letter }}</span>
+						{% endfor %}</a></span>
+					{% endifnotequal %}
+					{% ifequal page_num page.number %}
+						{% for letter in letter_list %}
+							{{ letter }}&nbsp;
+						{% endfor %}
+					{% endifequal %}
+				{% endfor %}
+			</p>
+		{% endif %}
+{% endblock contents %}

@@ -1,0 +1,15 @@
+{% extends 'kura_web/base.html' %}
+{% block keywords %}
+		 Constituency, polling station, general election, Kenya, IIEC
+{% endblock %}
+
+{% block contents %}
+
+    	<h1>Constituencies - Alphabetical Grouping</h1>
+		This is an alphabetical grouping of constituencies at the 2007 Kenya general election. 
+		Please click on a link below to display the IIEC constituency list. Polling stations are displayed when the specific 
+		constituency is selected.
+		
+		{% block list %}
+        {% endblock list %}
+{% endblock contents %}
